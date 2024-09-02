@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays Example</title>
+</head>
+<body>
+    <script>
+        let items = [];//Blank Array....
+        items = ["Apples", "Mangoes", "Oranges", "PineApples"]; 
+        console.log(items);
+        console.log("The total no of elements: " + items.length);
+
+        //Iterating arrays in various ways: 
+        for(let i =0; i < items.length; i++)
+            console.log(items[i]);
+
+        for (const element of items) {
+            console.log(element);
+        }
+        
+        for (const key in items) {
+            console.log("Key: " + key +", Value: " + items[key])
+        }
+
+        //Older syntax of JS using Lambda function   
+        items.forEach(element => {
+            console.log(element)
+        });
+
+        //////////Performing CURD operations on Arrays//////////////////////////////////
+        items.push("Kiwi Fruit")//Adds the item to the bottom of the array...
+        items.unshift("Gauvas"); //Adds the item to the begining of the array...
+        console.log("--------------After adding the items----------------");
+        for (const element of items) {
+            console.log(element);
+        }
+
+        console.log("--------------After removing the items----------------");
+        const itemToDelete = prompt("Enter the fruit name to remove");
+        const index = items.indexOf(itemToDelete);    
+        if(index < 0){
+            alert("No item found to delete")
+        }else{
+            items.splice(index, 1);//First parameter: From where to remove, 2nd parameter: How many items to remove. The optional 3 parameter would allow the items to replace or add. Put 0 as 2nd parameter if U want to add items from that index into the list.
+            for (const element of items) {
+            console.log(element);
+        } 
+        }
+    </script>
+</body>
+</html>

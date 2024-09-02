@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions Example</title>
+    <script src="./Ex04-Functions.js"></script>
+    <script>
+        function onAddRec(){
+            //It should take the values entered by the User in those Input boxes.
+            const id = document.getElementById("txtId").value;
+            const name = document.getElementById("txtName").value;
+            const price = document.getElementById("txtPrice").value;
+            const item = { id : id, name : name, price : price}; 
+            //Call the addRecord function and see if the data is added to the collection or not.
+            addRecord(item);
+            //Update the blank div with the current status of the data. 
+            const div = document.getElementById("divData");
+            div.innerText = JSON.stringify(items);
+        }
+
+        function onDelete(){
+            const id = prompt("Enter the Id to remove");
+            removeRecord(id);//Call the function with Id as the arg.
+            //Populate the data inside the div element.  
+            const div = document.getElementById("divData");
+            div.innerText = JSON.stringify(items);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Product Manager</h1>
+        <p>Enter the Id : <input type="number" id="txtId" placeholder="ID please!"></p>
+        <p>Enter the Name: <input type="text" id="txtName" placeholder="Name Please!"></p>
+        <p>Enter the Price: <input type="number" id="txtPrice" placeholder="Cost please!"></p>
+        <p>
+            <button onclick="onAddRec()">Add Record</button>
+            <button onclick="onDelete()">Delete Record</button>
+            <button>Update Record</button>
+        </p>
+    </div>
+    <div id="divData">
+
+    </div>
+</body>
+</html>
