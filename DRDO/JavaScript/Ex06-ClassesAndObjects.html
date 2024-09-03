@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./Ex06-ClassesAndObjects.js"></script>
+    <script>
+        //Using Unobtrusive JS feature where we cleanly seperate the UI and the JS logic. 
+        window.addEventListener("load", function(){
+            const p = document.querySelector("p");
+            p.innerHTML = JSON.stringify(cst);
+        })
+    </script>
+</head>
+<body>
+    <p>
+
+    </p>
+</body>
+</html>

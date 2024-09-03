@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+    <script>
+        function performOperation(){
+            //take the Values from the input boxes that has data entered.
+            const firstValue = parseFloat(document.getElementById("txtFirstValue").value); 
+            const secondValue = parseFloat(document.getElementById("txtSecondValue").value); 
+            const operand = document.querySelector("select").value;
+            const span = document.getElementById("spResult");
+            switch (operand) {
+                case "Add":
+                    span.innerText = firstValue + secondValue;
+                    break;
+                case "Subtract":
+                    alert("Do implement a set of functions Add, Subtract, Multiply and Divide using Arrow functions syntax and call them in the respective cases");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function onChange(){
+            const selectedValue = document.querySelector("select").value;
+            if(selectedValue == "Square" || selectedValue =="SquareRoot"){
+                document.getElementById('txtSecondValue').disabled = true;
+            }else{
+                document.getElementById('txtSecondValue').disabled = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Example on managing DOM elements</h1>
+    <hr>
+    <p>
+        <span>Click on the Document to see action</span>
+        <button>Click Me</button>
+    </p>
+    <div>
+        <h1>Calc Program</h1>
+        <p>
+            <input type="number" placeholder="Value1" id="txtFirstValue"/>
+            <select onchange="onChange()">
+                <option>Add</option>
+                <option>Subtract</option>
+                <option>Multiply</option>
+                <option>Divide</option>
+                <option>Square</option>
+                <option>SquareRoot</option>
+            </select>
+            <input type="number" placeholder="Value2" id="txtSecondValue"/>
+            <button onclick="performOperation()">=</button>
+            <span id="spResult"></span>
+        </p>
+
+    </div>
+</body>
+</html>
