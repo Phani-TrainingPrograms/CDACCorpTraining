@@ -1,0 +1,43 @@
+{
+  "movies": [
+    {
+      "id": "111",
+      "title": "Animal",
+      "director": "Sandeep RV"
+    },
+    {
+      "id": "112",
+      "title": "Fighter",
+      "director": "Sidharth Anand"
+    },
+    {
+      "id": "113",
+      "title": "Bramhastra",
+      "director": "Ayan Mukerji"
+    },
+    {
+      "id": "114",
+      "title": "RRR",
+      "director": "SS Rajamouli"
+    },
+    {
+      "id": "115",
+      "title": "KGF -1",
+      "director": "Prashanth"
+    }
+  ],
+  "actors": [
+    {
+      "id": "1",
+      "name": "Ranbir Kapoor",
+      "location": "Mumbai"
+    }
+  ],
+  "productions": [
+    {
+      "id": "1",
+      "House": "YRF",
+      "location": "Mumbai"
+    }
+  ]
+}

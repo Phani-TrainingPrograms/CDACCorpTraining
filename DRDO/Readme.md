@@ -42,10 +42,26 @@ Username and Password : corporate, corporate
 ### DOM Elements:
 1. HTML pages and its contents can be programmatically accessed using DOM.
 2. DOM stands for Documet Object Model. 
-3. The Html Document is represented by an object called Document. It has functions and event handlers which could be used to perform actions while the document is displayed in the browser. 
+3. The Html Document is represented by an object called Document. It has functions and event handlers which could be used to handle actions in the form of functions which are invoked when that action occurs while the document is displayed in the browser. 
 4. Elements or Tags within the Html Document can be accessed using document object. Its function called GETELEMENTBYID('id') can be used to obtain the reference of the element that we want to access programmatically. 
 5. There are other ways to get the elements. QuerySelector, ElementsByTagName, ElementsByClassName are a few of them. 
-6. 
+6. Use innerText and innerHTML for get/set values into the readonly elements like p, div, span etc. 
+7. Use value for setting the data inside input elements. 
 
-
+# NodeJs
+1. Nodejs is an environment built on JS to execute JS Applications out of the browser. 
+2. Developed by a Ryan Dahl who works in Joyent Technologies. 
+3. Nodejs uses Chrome's JS Engine called V8 Engine and runs the JS code from it. It is a single threaded Application Platform. 
+4. Multi threading is achieved using ThreadPools inside the V8 Engine and can be programmatically achieved using CallBacks, Promises and Async and Await functions. 
+5. Nodejs is a platform independenty technology.
+6. Nodejs uses module based programming where every component that u create shall be exposed as MODULE. Modules are imported by other JS Apps and consumed. 
+7. Modules can be shipped to central code repository called NPM(Node Package Manager).
+8. One can import those packages they need for their applications at one time and start using the APIs in their programs. 
+9. Express, Http-server, json-server are some of the widely used packages of the NODEJS environment.
+10. Install the nodejs in UR enviornment from https://nodejs.org/en/download/prebuilt-installer.
+11. Run the installation with defaults, check the Chocholetey for Python tools.
+12. U can test run the Nodejs by running Nodejs commands from the terminal. 
+```
+node --version
+``` 
   
