@@ -1,85 +1,65 @@
+//MongoDb is a database based on Collections of JS. It has to be downloaded as Community edition and used. Alternatively U can use Atlas, a Cloud Environment for MongoDb installed in Cloud. 
+//For local Applications, U must install Mongodb from the website. U should also install Mongosh which is the shell command for working with Mongodb. 
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-
-// Create express app
+const mongoose = require('mongoose');//Module for working with Mongodb database. However, there are other ways also to perform db operations. 
+const port = 1234;
 const app = express();
+const cors = require('cors');
+app.use(express.json());
+app.use(cors())
+///////////////////////////////DB Connection Code//////////////////////////////////////////
+mongoose.connect("mongodb://localhost:27017/SampleDb?directConnection=true", { useNewUrlParser : true , useUnifiedTopology : true}).then(()=> console.log("Connected to Database"))
+.catch(err => console.log(err.message));
 
-// Middleware
-app.use(bodyParser.json());
-
-// Connect to local MongoDB
-mongoose.connect('mongodb://localhost:27017/usersdb', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('MongoDB connection error:', err));
-
-// Define User schema and model
-const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    age: { type: Number, required: true }
+const empSchema = new mongoose.Schema({
+    id : { type : Number, required : true},
+    name : { type : String, required : true},
+    address : { type : String, required : true},
+    salary : { type : Number, required : true}
 });
 
-const User = mongoose.model('User', userSchema);
+const employees = mongoose.model('employees', empSchema);
+console.log(employees);
+///////////////////////////////////REST END POINTS//////////////////////////////////////////////
+app.get("/employees", async (req, res)=>{
+    const records = await employees.find()
+    res.status(200).send(records);
+});
 
-// Routes
+app.get("/employees/:id", async(req, res)=>{
+    const { id } = req.params;
+    const rec = await employees.findOne({id : id});
+    if(!rec) res.status(404).send({message : "Employee not found"});
+    res.status(200).send(rec); 
+})
 
-// Create a new user
-app.post('/api/users', async (req, res) => {
+app.post("/employees", async(req, res)=>{
+    const obj = new employees(req.body);
+    await obj.save();
+    res.status(200).send(obj);
+})
+
+app.put("/employees/:id", async(req, res)=>{
     try {
-        const user = new User(req.body);
-        await user.save();
-        res.status(201).send(user);
+        const emp = await employees.findOneAndUpdate({ id: req.params.id }, req.body);
+        res.status(200).send({ message: "Employee updated successfully" });
     } catch (err) {
-        res.status(400).send(err);
+        res.status(500).send({ message: err.message });
     }
-});
+})
 
-// Get all users
-app.get('/api/users', async (req, res) => {
+
+app.delete("/employees/:id", async(req, res)=>{
     try {
-        const users = await User.find();
-        res.status(200).send(users);
-    } catch (err) {
-        res.status(500).send(err);
+        const emp = await employees.findOneAndDelete({id : req.params.id});
+        if(!emp) return res.status(404).send({message : "Employee not found to delete"});
+        res.status(200).send({message : "Employee deleted successfully"})
+    } catch (error) {
+        res.status(500).send({message : error.message});      
     }
-});
+})
 
-// Get a user by ID
-app.get('/api/users/:id', async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        if (!user) return res.status(404).send({ message: 'User not found' });
-        res.status(200).send(user);
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
+app.listen(port, ()=>{
+    console.log("Server is running at " + port);
+})
 
-// Update a user by ID
-app.put('/api/users/:id', async (req, res) => {
-    try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!user) return res.status(404).send({ message: 'User not found' });
-        res.status(200).send(user);
-    } catch (err) {
-        res.status(400).send(err);
-    }
-});
-
-// Delete a user by ID
-app.delete('/api/users/:id', async (req, res) => {
-    try {
-        const user = await User.findByIdAndDelete(req.params.id);
-        if (!user) return res.status(404).send({ message: 'User not found' });
-        res.status(200).send({ message: 'User deleted' });
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
-
-// Start server
-const PORT = 1234;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
