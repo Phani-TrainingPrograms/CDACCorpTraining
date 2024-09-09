@@ -1,0 +1,16 @@
+<div>
+<h1>{{title}}</h1>
+<hr>
+<p>
+    <img [src]="imgFile"/>
+</p>
+<p>
+    Enter new title :
+    <input (keyup)="onUpdate($event)" [value] = data/><br/>
+    Setting thru' Interpollation Syntax: 
+    <input value ={{data}}/>
+</p>
+<p>
+    <h3>Event binding</h3>
+    <button class="btn btn-primary" (click)="onSubmit()">Click Me!!!</button>
+</div>
