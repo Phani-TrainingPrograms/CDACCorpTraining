@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header">
+        <h2>{{movie.title | uppercase}}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <img class="imgCard" [src]="movie.moviePic" />
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control my-4" [value]="movie.id" placeholder="Id" />
+                <input type="text" class="form-control my-4" [value]="movie.director" placeholder="Director" />
+
+            </div>
+            <div class="col-sm-1">
+                <ul class="navbar" style="list-style-type: none;">
+                    <li class="nav-item my-2">
+                        <a class="btn btn-primary btn-sm">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item my-2">
+                        <a class="btn btn-danger btn-sm" (click)="onMovieDelete()">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item my-2">
+                        <a class="btn btn-secondary btn-sm" (click)="onMovieUpdate()">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
