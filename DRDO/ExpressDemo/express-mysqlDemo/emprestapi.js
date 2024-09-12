@@ -2,11 +2,30 @@
 
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');
+const multer = require('multer');
+const path = require('path');
 
+// Configure Multer storage
+const storage = multer.diskStorage({
+// Set the destination for the uploaded files
+    destination: function (req, file, cb) {
+    cb(null, 'staticFiles/images/'); // The folder where files will be stored
+},
+
+// Set the filename to be the original file name
+filename: function (req, file, cb) {
+    cb(null, file.originalname); // Save the file with its original name
+}
+});
 const app = express();
+const upload = multer({ storage : storage   });
+
+///////////////////Add the required middleware/////////////////////////////////////////////
 app.use(express.urlencoded({ extended :true}));
 app.use(express.json());
-
+app.use(cors());
+app.use(express.static("staticFiles"));
 const port = 1234;
 
 ////////////////////////////MySQL Connection Statements///////////////////////////////////////
@@ -77,6 +96,11 @@ app.delete("/empList/:id", (req, res)=>{
         else
             return res.status(404).json({"message" : "Employee not found to update"})
     })
+})
+
+app.post("/empList/upload", upload.single('image'), (req, res)=>{ 
+    const empPic = req.file;
+    res.send({ "filename" : empPic.path});
 })
 
 app.listen(port, ()=>{
