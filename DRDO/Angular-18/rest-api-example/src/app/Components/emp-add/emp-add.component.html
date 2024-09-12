@@ -1,1 +1,27 @@
-<p>emp-add works!</p>
+<div class="container">
+    {{emp | json}}
+    <div class="row">
+        <h2>New Employee Registration</h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-8">
+                Enter the Name : <input type="text" [(ngModel)] ="emp.name" class="form-control m-3">
+                Enter the Address : <input type="text" [(ngModel)] ="emp.address" class="form-control m-3">
+                Enter the Salary : <input type="number" [(ngModel)] ="emp.salary" class="form-control m-3">
+                Enter the Image FileName : <input type="file" (change)="onFileSelect($event)"  class="form-control m-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-success m-3" (click)="onSubmit()">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    Add Record
+                </button>
+                <button class="btn btn-secondary m-3" routerLink="/">
+                    <i class="fa fa-backward" aria-hidden="true"></i>
+                    Back to Home
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,4 +25,14 @@ export class EmployeeService {
     const tempUrl = this.baseUrl + "/" + emp.id;
     return this.http.put<any>(tempUrl, emp);
   }
+
+  addEmployee(emp : Employee) : Observable<Employee>{
+    return this.http.post<Employee>(this.baseUrl, emp);
+  }
+
+  deleteEmployee(id : number) : Observable<any>{
+    const tempUrl = this.baseUrl + "/" + id;
+    return this.http.delete<any>(tempUrl);
+  }
+
 }
