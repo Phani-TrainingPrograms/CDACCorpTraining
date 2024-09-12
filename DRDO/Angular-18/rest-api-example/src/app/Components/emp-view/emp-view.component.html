@@ -1,1 +1,22 @@
-<p>emp-view works!</p>
+<div class="card m-4" style="max-width: 600px; text-align: center;">
+    <div class="card-header">
+        <h2 class="h2">{{selectedEmp.name}}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-5">
+                <img [src] = "selectedEmp.empPic | imageFile"/>
+            </div>
+            <div class="col-md-6">
+                <input class="form-control my-2" disabled [value] = selectedEmp.id/>
+                <input class="form-control my-2" disabled [value] = selectedEmp.address/>
+                <input class="form-control my-2" disabled [value] = selectedEmp.salary/>
+            </div>
+            <div class="row">
+                <button class="btn btn-danger" routerLink="/">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

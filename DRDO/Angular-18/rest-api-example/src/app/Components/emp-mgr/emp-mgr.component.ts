@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule} from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
 import { ImageFilePipe } from '../../Pipes/image-file.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-emp-mgr',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, ImageFilePipe],//For JSON pipe.
+  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, ImageFilePipe],//For JSON pipe.
   templateUrl: './emp-mgr.component.html',
   styles: `
     .example-card{

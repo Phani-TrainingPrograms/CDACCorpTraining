@@ -21,4 +21,8 @@ export class EmployeeService {
     return this.http.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
+  updateEmployee(emp : Employee) : Observable<any>{
+    const tempUrl = this.baseUrl + "/" + emp.id;
+    return this.http.put<any>(tempUrl, emp);
+  }
 }

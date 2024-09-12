@@ -1,1 +1,29 @@
-<p>emp-edit works!</p>
+
+<div class="card m-4" style="max-width: 600px; text-align: center;">
+    <div class="card-header">
+        <h2 class="h2">{{selectedEmp.name}}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-5">
+                <img [src] = "selectedEmp.empPic | imageFile"/>
+            </div>
+            <div class="col-md-6">
+                <input class="form-control my-2" [(ngModel)] = selectedEmp.id/>
+                <input class="form-control my-2" [(ngModel)] = selectedEmp.address/>
+                <input class="form-control my-2" [(ngModel)] = selectedEmp.salary/>
+                <input class="form-control my-2" [(ngModel)] = selectedEmp.empPic/>
+            </div>
+            <div class="row">
+                <button class="btn btn-danger" routerLink="/">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary" (click)="onUpdate()">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{message.message}}
+
