@@ -7,16 +7,18 @@ import { Employee } from '../Models/employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl : string = "http://localhost:1234";
+  baseUrl : string = "http://localhost:1234/empList";
   //TS will use this parameter in the constructor as a field/member of the class
   constructor(private http : HttpClient) {
-    
+    //injected the HttpClient for accessing HTTP-REST services. 
   }
-
+  //returns an observable with data of the type Employee[]
   getAllEmployees() : Observable<Employee[]>{
-    const tempUrl = this.baseUrl + "/" + "empList";
-    return this.http.get<Employee[]>(tempUrl);
+    return this.http.get<Employee[]>(this.baseUrl);
   }
 
+  getEmployeeById(id: number) : Observable<Employee>{
+    return this.http.get<Employee>(`${this.baseUrl}/${id}`);
+  }
 
 }

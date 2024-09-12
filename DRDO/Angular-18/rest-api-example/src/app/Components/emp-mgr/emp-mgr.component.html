@@ -1,3 +1,23 @@
-<p>
-    {{empList | json }}
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" *ngFor="let emp of empList">
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{emp.name}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]='emp.empPic | imageFile'/>
+                <mat-card-content>
+                    <p>{{emp.address}}</p>
+                    <p>{{emp.salary | currency :'INR'}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>View</button>
+                    <button mat-button>Edit</button>
+                    <button mat-button>Delete</button>
+                </mat-card-actions>
+            </mat-card>    
+        </div>
+    </div>
+</div>
+
