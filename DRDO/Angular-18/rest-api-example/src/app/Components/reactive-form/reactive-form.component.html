@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Reactive Forms Demo</h2>
+    <hr>
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Emp Name:</label>
+            <input type="text" id="name" formControlName="name"/>
+            <div style="color:red" *ngIf="empForm.get('name')?.invalid && empForm.get('name')?.touched">
+                <small *ngIf="empForm.get('name')?.errors?.['required']">Name is mandatory</small>
+                <small *ngIf="empForm.get('name')?.errors?.['minlength']">Minimum of 3 charecters are required</small>
+            </div>
+        </div>
+        <div>
+            <label for="email">Emp email:</label>
+            <input type="text" id="email" formControlName="email"/>
+            <div style="color:red" *ngIf="empForm.get('email')?.invalid && empForm.get('email')?.touched">
+                <small *ngIf="empForm.get('email')?.errors?.['required']">Phone is mandatory</small>
+                <small *ngIf="empForm.get('email')?.errors?.['email']">Invalid Email Address</small>
+            </div>
+        </div>
+        <div>
+            <label for="phoneNo">Emp Contact:
+                <i class="fa fa-phone-square" aria-hidden="true"></i>
+            </label>
+            <input type="text" id="phoneNo" formControlName="phoneNo"/>
+            <div style="color:red" *ngIf="empForm.get('phoneNo')?.invalid && empForm.get('phoneNo')?.touched">
+                <small *ngIf="empForm.get('phoneNo')?.errors?.['required']">Phone is mandatory</small>
+                <small *ngIf="empForm.get('phoneNo')?.errors?.['minlength'] && empForm.get('phoneNo')?.errors?.['maxlength']">Phone no should be exactly 10 charecters</small>
+            </div>
+        </div>
+        <button type="submit" [disabled]="empForm.invalid">Submit</button>
+    </form>
+</div>

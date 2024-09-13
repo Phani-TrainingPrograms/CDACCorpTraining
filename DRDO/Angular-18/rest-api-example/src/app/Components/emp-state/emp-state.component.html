@@ -1,0 +1,34 @@
+<p>{{myData | async }}</p>
+<div class="container">
+    <h2>My Record List</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let rec of myData | async">
+            <h2>{{rec.name}}</h2>
+            <hr>
+            <p>Amount: {{rec.amount| currency : 'INR'}}</p>
+            <p>RecordId: {{rec.id}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Add new record</h2>
+        <div class="col-md-6">
+            <p>Name : <input type="text" [(ngModel)]="newRec.name" class="form-control"></p>
+            <p>Amount : <input type="number" [(ngModel)]="newRec.amount" class="form-control"></p>
+            <p>
+                <button class="btn btn-primary m-2" (click)="onAddRecord()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Add Record
+                </button>
+                <button class="btn btn-success m-2" (click)="onUpdateRecord()">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    Update Record
+                </button>
+                <button class="btn btn-danger m-2">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete Record
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
