@@ -1,5 +1,3 @@
-Internet Access->Available for all.
-Username and Password : corporate, corporate
 # Angular Training
 # JS Programming
 - JS is the most popular scripting language for web apps. 
